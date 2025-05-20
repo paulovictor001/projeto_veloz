@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'estilo_pg_venda.css' %}">
+    <link rel="stylesheet" href="{% static 'estilo_base.css' %}">
+</head>
+<body>
+    <div class="conteiner">
+        <div class="menu_lateral">
+            <nav>
+                <a href="{% url 'pg_estoque' %}">estoque</a>
+                <a href="{% url 'pg_relatorio_vendas' %}">relatorio de vendas</a>
+                <a href="{% url 'pagina_vendas' %}">efetuar vendas</a>
+            </nav>
+        </div>
+        <div class="main">
+            <header>
+                <h1>Gestor de vendas</h1>
+            </header>
+
+            <h2>vendas</h2>
+
+            <form action="{% url 'pagina_vendas' %}" method="post" class="campo_pesquisa"> {% csrf_token %}
+                <div>
+                    <input type="text" name="nome_produto" id="inome_produto">
+                    <input type="submit">
+                </div>
+            </form>
+
+            <div class="box_table">
+                <table class="tabela_produtos">
+                    <thead>
+                        <tr>
+                            <th>produto</th>
+                            <th>valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for c in dados%}
+                            <form action="{% url 'carrinho' c.id %}" method="post">{% csrf_token %}
+                                <tr class="row_table">
+                                    <td>{{c.produto}}</td>
+                                    <td>{{c.valor}}</td>
+                                    <td><input type="number" placeholder="quantidade" class="fip" name="quantidade" required></td>
+                                    <td><input type="submit" value="adicionar"></td>
+                                </tr>
+                            </form>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            
+            <!-- <div id="produtos">
+                <span id="nome"></span>
+                <span id="preço"></span>
+                <input type="number" id="quantidade">
+                <a href="" class="bt">adicionar</a>
+            </div> -->
+
+            <div class="box_table">
+                <table  class="tabela_produtos">
+                    <thead>
+                        <tr>
+                            <th>produto</th>
+                            <th>preço</th>
+                            <th>quantidade</th>
+                            <th>total</th>
+                        </tr>
+                    </thead>
+                
+                        <tbody>
+                            {% for c in carrinho %}
+                                <tr>
+                                    <td>{{c.produto}}</td>
+                                    <td>{{c.valor}}</td>
+                                    <td>{{c.quantidade}}</td>
+                                    <td>{{c.preço_total_quantidade}}</td>
+                                    <td><a href="{% url 'deleta_produtos_carrinho' c.id %}">remover</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            </div>
+            <p class="total_vendas">
+                Total:{{total}}<a href="{% url 'concluir_vendas' %}">concluir venda</a>
+            </p>
+        </div>    
+    </div>
+    <footer>© 2025 Gerenciador de vendas - Todos os direitos reservados</footer>
+    <script src="{% static 'idex.js' %}"></script>
+</body>
+</html>

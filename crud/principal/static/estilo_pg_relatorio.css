@@ -1,0 +1,13 @@
+.box_table{
+    max-height: 65vh;
+    margin-bottom: 2em;
+}
+
+#data_relatorio{
+    margin: auto;
+    padding: 1em 0px;
+    text-align: center;
+}
+#data_relatorio input{
+    margin: 0 5px;
+}

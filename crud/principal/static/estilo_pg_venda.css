@@ -1,0 +1,47 @@
+.tabela_produtos input[type='submit']{
+    box-sizing: border-box;
+    width: 80px;
+    background-color: white;
+    color: #00ca87;
+    border: 2px solid #00ffaa;
+    padding: 0.6em 0;
+}
+.tabela_produtos input[type='submit']:hover{
+    background: #00ffaa;
+    color: white;
+    transition: 300ms;
+}
+.tabela_produtos a{
+    box-sizing: border-box;
+    display: block;
+    width: 80px;
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    padding: 0.4em 0;
+    text-align: center;
+}
+.total_vendas{
+    box-sizing: border-box;
+    text-align: right;
+    padding: 1em 1em;
+    background-color: white;
+    width: 80%;
+    margin: auto;
+    margin-bottom: 2em;
+    font-size: 1.5em;
+    font-family: sans-serif;
+    
+}
+.total_vendas a{
+    font-size: 20px;
+    color: #00ffaa;
+    border: 1px solid #00ffaa;
+    padding: 0.5em;
+    margin-left: 1em;
+}
+.total_vendas a:hover{
+    background-color: #00ffaa;
+    color: white;
+    transition: 300ms;
+}

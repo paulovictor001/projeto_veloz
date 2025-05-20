@@ -1,0 +1,145 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'estilo_base.css' %}">
+    <link rel="stylesheet" href="{% static 'estilo_pg_estoque.css' %}">
+  
+</head>
+<body>
+    <div class="conteiner">
+
+        <div class="menu_lateral">
+            <nav>
+                <a href="{% url 'pg_estoque' %}">estoque</a>
+                <a href="{% url 'pg_relatorio_vendas' %}">relatorio de vendas</a>
+                <a href="{% url 'pagina_vendas' %}">efetuar vendas</a>
+            </nav>
+        </div>
+
+        <div class="main">
+
+            <header>
+                <h1>Gestor de vendas</h1>
+            </header>
+
+            <h2>controle de estoque</h2>
+
+            <div class="campo_pesquisa">
+                <form action="{% url 'pesquisa' %}" method="post"> {% csrf_token %}
+                    <input type="text" name="pesquisa_produto">
+                    <input type="submit" name="produto">
+                </form>
+                <button class="bt_adiciona_produto">adicionar produto</button>
+            </div>
+
+            <div class="box_table">
+                <table class="tabela_produtos">
+                    <thead>
+                        <th>id</th>
+                        <th>produto</th>
+                        <th>preço</th>
+                        <th>estoque</th>
+                    </thead>
+                    <tbody>
+                        {% for c in dados %}
+                        <tr>
+                            <td>{{c.id}}</td>
+                            <td>{{c.produto}}</td>
+                            <td>{{c.valor}}</td>
+                            <td>{{c.estoque}}</td>
+                            <td><button class="bt_deletar">deletar</button></td>
+                            <td><button class="bt_editar">editar</button></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            
+            <form action="{% url 'editar' %}" method="post" id="form_ediçao"> {% csrf_token %}
+                <button class="sair">x</button>
+                <h2> modifique o produto</h2>
+
+                <input type="number" name="id_produto"  id="id_produto" style="display: none;">
+
+                <div class="box_inputs">
+
+                    <div id="input_nome_ediçao">
+                        <label for="">produto</label>
+                        <input type="text" name="produto" id="iiproduto" required>
+                    </div>
+
+                    <div id="box_inputs_valor_estoque_ediçao">
+
+                        <div id="input_valor_ediçao">
+                            <label for="">valor</label>
+                            <input type="number" name="valor" id="iivalor" required step="0.01">
+                        </div>
+
+                        <div id="input_estoque_ediçao">
+                            <label for="">estoque</label>
+                            <input type="number" name="estoque" id="iiestoque" required>
+                        </div>
+
+                    </div>
+
+                    <input type="submit">
+                    
+                </div>
+
+            </form>
+  
+            
+            <form action="{% url 'pg_estoque' %}" method="post" id="fomulario_add_produto" autocomplete="off"> {% csrf_token %}
+                <button class="sair">x</button>
+                <h2>adicione um produto</h2>
+
+                <div class="box_inputs">
+
+                    <div id="input_nome">
+                        <label for="iproduto">produto</label>
+                        <input type="text" name="produto" id="iproduto" required>
+                    </div>
+                    
+                    <div id="box_inputs_valor_estoque">
+                        <div id="input_valor">
+                            <label for="ipreço">preço</label>
+                            <input type="number" name="preço" id="ipreço" step="0.01" required>
+                        </div>
+                        <div id="input_estoque">
+                            <label for="iestoque">estoque</label>
+                            <input type="number" name="estoque" id="iestoque" required>
+                        </div>
+                    </div>
+                    
+                    <input type="submit" id="bt_cria_produto">
+                </div>
+
+            </form>
+
+            <div id="msg_delet">
+                <h3>titulo</h3>
+                <p>Essa ação não podera ser desfeita! Você tem certeza que deseja deletar esse produto?!</p>
+                <form action="{% url 'deletar' %}" method="post" id="formulario_excluçao_produto"> {% csrf_token %}
+
+                    <input type="text" style="display: none;" name="id_produto" id="iid_produto" >
+                    <input type="submit" value="sim" id="sim_delet">
+                    <button id="nao_delet">não</button>
+
+                </form> {% csrf_token %}
+            </div>
+
+        </div>
+           
+    </div>
+    <footer>© 2025 Gerenciador de vendas - Todos os direitos reservados</footer>
+
+    <script src="{% static 'idex.js' %}"></script>
+</body>
+   
+</html>

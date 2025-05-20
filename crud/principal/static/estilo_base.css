@@ -1,0 +1,106 @@
+/*css padrão das paginas*/
+*{
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+}
+
+.conteiner{
+    display: flex;
+}
+.menu_lateral {
+    height: 100vh;
+    background-color: white;
+}
+
+.menu_lateral a{
+    display: block;
+    width: 200px;
+    padding: 1em 0;
+    color:#4EDCFE;
+    text-align: center;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+.menu_lateral a:hover{
+    background-color: #b5edfc;
+    color: #0084a5;
+    transition: 500ms;
+}
+.main{
+    position: relative;
+    background-color: #F2F2F2;
+    width: 100%;
+}
+header{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    margin-bottom: 3em;
+    padding: 0 1.5em;
+    background-color: #4EDCFE;
+    color: white;
+    font-family: sans-serif;
+   
+}
+.campo_pesquisa {
+    width: 80%;
+    margin: 2em auto;
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+}
+.campo_pesquisa input[type='text']{
+    width: 87%;
+    padding: 0.5em;
+}
+.campo_pesquisa input[type='submit']{
+    width: 10%;
+    height: 32px;
+}
+
+ /* tabela */
+.box_table{
+    width: 80%;
+    max-height: 400px;
+    overflow: scroll;
+    margin: auto;
+    margin-bottom:2em ;
+}
+.tabela_produtos {
+    border-collapse:collapse;
+    background-color: white;
+    width: 100%;
+ }
+
+.tabela_produtos th{
+     padding: 1.2em 1.2em;
+     text-align: left;
+     border-bottom:0.5px solid #0084a541;
+}
+.tabela_produtos td{
+        border-bottom:0.5px solid #0084a541;
+        border-collapse:collapse;
+        padding: 1em;
+}
+
+h2{
+    text-align: center;
+    font-size: 2.5em;
+    font-family: sans-serif;
+    color: #0084a5;
+    margin-bottom: 1em;
+}
+footer{
+    height: 100px;
+    width: 100%;
+    background-color: #00566b;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+}
+
+
+/*css padrão das paginas*/
